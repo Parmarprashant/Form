@@ -23,7 +23,7 @@ function App() {
 
   try {
     const response = await axios.post(
-      "http://localhost:3000/users",
+      "https://form-2-5r5t.onrender.com/users",
       detail,
       {
         headers: {
