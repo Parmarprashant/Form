@@ -32,10 +32,17 @@ function App() {
       }
     );
 
-    console.log(response.data); // ✅ correct
+    console.log(response.data); 
   } catch (error) {
     console.log(error.response?.data || error.message);
   }
+
+setDetail({
+   username: "",
+   Phone: "",
+   password: "",
+   ConfirmPassword: ""
+});
 }
   return (
     <>
@@ -56,13 +63,13 @@ function App() {
       <br />
 
       <label htmlFor="password">Enter Your Password:- </label>
-      <input type="text" id='password' name='password' value={detail.password}
+      <input type="password" id='password' name='password' value={detail.password}
       onChange={handleInput}/>
       <br />
       <br />
       
         <label htmlFor="Conpassword">Enter Confirm Password:- </label>
-      <input type="text" id='Conpassword' name='ConfirmPassword' value={detail.ConfirmPassword}
+      <input type="password" id='Conpassword' name='ConfirmPassword' value={detail.ConfirmPassword}
       onChange={handleInput}/>
       <br />
       <br />
