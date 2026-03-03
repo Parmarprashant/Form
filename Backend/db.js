@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const mongoURL = 'mongodb://127.0.0.1:27017/UserDetails'
+const mongoURL = 'mongodb+srv://prashantparmar9919_db_user:K612joyu@cluster0.hshdjpt.mongodb.net/UserDetails?retryWrites=true&w=majority'
 
 mongoose.connect(mongoURL);
 
