@@ -48,7 +48,9 @@ setDetail({
     <>
     
     <div className="Main">
+    
      <form onSubmit={handleSubmit}>
+      <h1>Users Details</h1>
 
       <label htmlFor="username">Enter Your Usnername:- </label>
       <input type="text" id='username' name='username' value={detail.username} 
