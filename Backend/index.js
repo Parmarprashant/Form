@@ -12,22 +12,30 @@ app.get('/users', async (req, res)=>{
     res.status(201).json(data);
 })
 
-app.post('/users', async (req, res)=>{
+app.post('/users', async (req,res)=>{
    try{
-     const fData = req.body;
 
-     const user = new Users(fData);
-     const gResponse = await user.save();
-     console.log("data saved of user");
-     res.status(200).json(gResponse);
+      console.log("Incoming data:", req.body);
+
+      const {username, phone, password, confirmPassword} = req.body;
+
+      if(password !== confirmPassword){
+        return res.status(400).json({error:"Passwords do not match"});
+      }
+
+      const user = new Users({username, phone, password});
+      const savedUser = await user.save();
+
+      res.status(201).json(savedUser);
+
+   }catch(err){
+      console.error("SERVER ERROR:", err);
+      res.status(500).json({error: err.message});
    }
-   catch(err){
-        console.log(err);
-        res.status(500).json({error: "internal server error"})
-    }
 })
 
+const PORT = process.env.PORT || 3000;
 
-app.listen(3000, ()=>{
-    console.log("server is running the port 3000");
-})
+app.listen(PORT, ()=>{
+    console.log(`Server running on port ${PORT}`);
+});
