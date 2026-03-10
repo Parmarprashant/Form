@@ -1,16 +1,25 @@
 const express = require('express');
 const cors = require('cors');
-const app = express();
-app.use(express.json());
-app.use(cors());
-const db = require('./db')
-const Users = require('./models/User')
 
+const app = express();
+
+app.use(cors({
+  origin: "*",
+  methods: ["GET","POST","PUT","DELETE","OPTIONS"],
+  allowedHeaders: ["Content-Type","Authorization"]
+}));
+
+
+
+app.use(express.json());
+
+const db = require('./db');
+const Users = require('./models/User');
 
 app.get('/users', async (req, res)=>{
-    const data = await Users.find()
-    res.status(201).json(data);
-})
+    const data = await Users.find();
+    res.status(200).json(data);
+});
 
 app.post('/users', async (req,res)=>{
    try{
@@ -19,9 +28,6 @@ app.post('/users', async (req,res)=>{
 
       const {username, phone, password, confirmPassword} = req.body;
 
-      if(password !== confirmPassword){
-        return res.status(400).json({error:"Passwords do not match"});
-      }
 
       const user = new Users({username, phone, password});
       const savedUser = await user.save();
@@ -32,7 +38,7 @@ app.post('/users', async (req,res)=>{
       console.error("SERVER ERROR:", err);
       res.status(500).json({error: err.message});
    }
-})
+});
 
 const PORT = process.env.PORT || 3000;
 

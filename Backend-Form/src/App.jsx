@@ -23,8 +23,9 @@ function App() {
 
   try {
     const response = await axios.post(
-      "https://form-2-5r5t.onrender.com/users",
-      detail,
+  "https://main-form.onrender.com/users",
+  detail
+,
       {
         headers: {
           "Content-Type": "application/json"
