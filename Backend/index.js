@@ -3,15 +3,10 @@ const cors = require('cors');
 
 const app = express();
 
-app.use(cors({
-  origin: "*",
-  methods: ["GET","POST","PUT","DELETE","OPTIONS"],
-  allowedHeaders: ["Content-Type","Authorization"]
-}));
-
-
-
+// midleware 
+app.use(cors)
 app.use(express.json());
+
 
 const db = require('./db');
 const Users = require('./models/User');
