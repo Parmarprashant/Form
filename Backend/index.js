@@ -24,7 +24,7 @@ app.post('/users', async (req,res)=>{
       const {username, phone, password, confirmPassword} = req.body;
 
 
-      const user = new Users({username, phone, password});
+      const user = new Users({username, phone, password, confirmPassword});
       const savedUser = await user.save();
 
       res.status(201).json(savedUser);
