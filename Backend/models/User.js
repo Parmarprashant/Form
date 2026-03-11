@@ -7,8 +7,13 @@ const userSchema = new mongoose.Schema({
     },
     phone:{
         type:String,
+        require: true
     },
     password:{
+        type:String,
+        required:true
+    },
+    confirmPassword:{
         type:String,
         required:true
     }
